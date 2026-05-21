@@ -15,6 +15,11 @@ const routes = [
     props: true,
   },
   {
+    path: "/correlations",
+    name: "correlations",
+    component: () => import("../views/CorrelationView.vue"),
+  },
+  {
     path: "/mitre",
     name: "mitre",
     component: () => import("../views/MitreView.vue"),

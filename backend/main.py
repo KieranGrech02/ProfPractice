@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from database import Base, SessionLocal, engine
-from routes import alerts, dashboard, enrichment, mitre
+from routes import alerts, correlations, dashboard, enrichment, mitre
 from seed_data import seed_database
 
 Base.metadata.create_all(bind=engine)
@@ -18,6 +18,7 @@ app.add_middleware(
 )
 
 app.include_router(alerts.router)
+app.include_router(correlations.router)
 app.include_router(dashboard.router)
 app.include_router(enrichment.router)
 app.include_router(mitre.router)

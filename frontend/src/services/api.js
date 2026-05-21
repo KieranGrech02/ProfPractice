@@ -28,4 +28,7 @@ export default {
   getMitreTactics: () => api.get("/mitre/tactics"),
   getMitreTechniques: () => api.get("/mitre/techniques"),
   getMitreCoverage: () => api.get("/mitre/coverage"),
+
+  getCorrelationGraph: () => api.get("/correlations/graph"),
+  getCorrelationClusters: () => api.get("/correlations/clusters"),
 };
