@@ -189,6 +189,10 @@ async function fetchAlert() {
   const res = await api.getAlert(route.params.id);
   alert.value = res.data;
   notes.value = res.data.analyst_notes || "";
+
+  if (!res.data.enrichments.length) {
+    runEnrichment();
+  }
 }
 
 async function updateStatus(status) {
