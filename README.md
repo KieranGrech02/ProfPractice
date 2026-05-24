@@ -1,79 +1,45 @@
 # SOC Alert Triage Dashboard
 
-A full-stack security operations centre (SOC) alert triage dashboard built with **Vue 3** and **FastAPI**. Designed as a professional development project to build practical skills in threat detection, incident response, and security operations tooling.
+SOC alert triage dashboard built with Vue 3 + FastAPI for my UTS Professional Practice subject (43030). The idea was to build something that simulates what a SOC analyst actually uses day-to-day, covering alert triage, threat intel enrichment, and MITRE ATT&CK mapping.
 
-## Features
+## Setup
 
-- **Dashboard Overview** — Real-time stats, alert volume trends, severity breakdown, and top MITRE ATT&CK techniques
-- **Alert Management** — Search, filter, and triage security alerts with full CRUD operations
-- **Threat Intelligence Enrichment** — Enrich indicators (IPs, file hashes) via VirusTotal and AbuseIPDB APIs (with mock fallback)
-- **MITRE ATT&CK Mapping** — Visual coverage map showing which tactics and techniques have active alerts
-- **Investigation Timeline** — Chronological event log tracking status changes, analyst notes, and enrichment activity
-- **Analyst Workflow** — Update alert status, add investigation notes, and track triage progress
-
-## Tech Stack
-
-| Layer    | Technology                        |
-| -------- | --------------------------------- |
-| Frontend | Vue 3, Vue Router, Tailwind CSS   |
-| Charts   | Chart.js + vue-chartjs            |
-| Backend  | Python FastAPI                    |
-| Database | SQLite via SQLAlchemy             |
-| Enrichment | VirusTotal API, AbuseIPDB API  |
-
-## Getting Started
-
-### Prerequisites
-
-- Python 3.10+
-- Node.js 18+
-
-### Backend Setup
-
+**Backend:**
 ```bash
 cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-The API runs on `http://localhost:8000`. The database is seeded with realistic security alerts on first startup.
-
-### Frontend Setup
-
+**Frontend:**
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-The frontend runs on `http://localhost:5173` and proxies API requests to the backend.
+Backend runs on port 8000, frontend on 5173. DB gets seeded with sample alerts automatically on first run.
 
-### Optional: Real Threat Intelligence
+## Features
 
-Set environment variables to enable real API enrichment (falls back to realistic mock data if not set):
+- Dashboard with alert stats, severity chart, volume over time, top ATT&CK techniques
+- Alert list with search/filter, click into detail view for full triage workflow
+- Threat intel enrichment (VirusTotal + AbuseIPDB, falls back to mock data without API keys)
+- MITRE ATT&CK coverage view
+- Alert correlation graph using D3.js - groups alerts by shared indicators (IPs, hostnames, users)
+- Investigation timeline across all alerts
 
-```bash
-export VIRUSTOTAL_API_KEY=your_key_here
-export ABUSEIPDB_API_KEY=your_key_here
+## Threat Intel API Keys (optional)
+
+If you want real enrichment instead of mock data, set these env vars:
+```
+VIRUSTOTAL_API_KEY=your_key
+ABUSEIPDB_API_KEY=your_key
 ```
 
-## MITRE ATT&CK Techniques Covered
+## Tech
 
-The seed data includes alerts mapped to techniques across the ATT&CK framework:
-
-- **Initial Access** — Phishing (T1566), Exploit Public-Facing App (T1190), Valid Accounts (T1078)
-- **Execution** — PowerShell (T1059.001), Command and Scripting Interpreter (T1059)
-- **Persistence** — Scheduled Task (T1053), Boot Autostart Execution (T1547)
-- **Privilege Escalation** — Token Manipulation (T1134), UAC Bypass (T1548)
-- **Defense Evasion** — Indicator Removal (T1070), Obfuscated Files (T1027)
-- **Credential Access** — Brute Force (T1110), OS Credential Dumping (T1003), Kerberoasting (T1558)
-- **Discovery** — Network Service Discovery (T1046), Account Discovery (T1087)
-- **Lateral Movement** — RDP (T1021.001), Remote Services (T1021)
-- **Collection** — Archive Collected Data (T1560)
-- **Exfiltration** — Web Service (T1567), Alternative Protocol (T1048)
-- **Command and Control** — Application Layer Protocol (T1071), Ingress Tool Transfer (T1105)
-- **Impact** — Data Encrypted for Impact (T1486), Network DoS (T1498)
-
-## Project Context
-
-This project was developed as part of the UTS 43030 Professional Practice subject. It addresses Goal 4 of my Professional Learning Plan: building practical threat detection and incident response skills. The project demonstrates applied knowledge in security operations concepts, detection engineering, threat intelligence enrichment, and the MITRE ATT&CK framework.
+- Vue 3 / Vue Router / Tailwind CSS
+- Chart.js + vue-chartjs for graphs
+- D3.js for correlation force graph
+- FastAPI + SQLAlchemy + SQLite

@@ -18,6 +18,7 @@ router = APIRouter(prefix="/api/dashboard", tags=["dashboard"])
 
 @router.get("/stats", response_model=DashboardStats)
 def get_stats(db: Session = Depends(get_db)):
+    # not the most efficient way to do this but works fine for now
     alerts = db.query(Alert).all()
     return DashboardStats(
         total_alerts=len(alerts),

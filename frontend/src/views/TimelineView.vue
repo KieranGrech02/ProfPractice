@@ -116,6 +116,7 @@ function eventLabel(type) {
 }
 
 async function fetchTimeline() {
+  // TODO: this is pretty wasteful, should add a dedicated timeline endpoint
   const res = await api.getAlerts();
   const detailed = await Promise.all(
     res.data.map((a) => api.getAlert(a.id).then((r) => r.data)),

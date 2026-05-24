@@ -65,9 +65,9 @@
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   enrichments: { type: Array, default: () => [] },
-  loading: { type: Boolean, default: false },
+  loading: Boolean,
 });
 defineEmits(["enrich"]);
 </script>

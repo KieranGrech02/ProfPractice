@@ -17,6 +17,7 @@ def _build_graph(alerts: list[Alert]) -> dict:
     alert_map = {a.id: a for a in alerts}
 
     index_by_field: dict[str, dict[str, list[int]]] = defaultdict(lambda: defaultdict(list))
+    # could also correlate on mitre technique but it gets too noisy
     correlation_fields = [
         ("source_ip", "Source IP"),
         ("destination_ip", "Destination IP"),

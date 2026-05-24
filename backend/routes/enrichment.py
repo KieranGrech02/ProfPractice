@@ -18,6 +18,7 @@ async def enrich_alert(alert_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Alert not found")
 
     results = []
+    # TODO: add domain indicator support
     indicators = []
     if alert.source_ip:
         indicators.append(("ip", alert.source_ip))

@@ -275,6 +275,7 @@ function buildGraph(graphData) {
 
   nodeGroup
     .on("mouseover", (event, d) => {
+      // console.log("hover", d.id, d.title);
       const svgRect = svgRef.value.getBoundingClientRect();
       tooltip.value = {
         visible: true,

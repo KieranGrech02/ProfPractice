@@ -158,10 +158,10 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
+import api from "../services/api";
 import EnrichmentPanel from "../components/EnrichmentPanel.vue";
 import SeverityBadge from "../components/SeverityBadge.vue";
 import StatusBadge from "../components/StatusBadge.vue";
-import api from "../services/api";
 
 const route = useRoute();
 const alert = ref(null);

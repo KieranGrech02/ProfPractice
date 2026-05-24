@@ -89,10 +89,10 @@
 </template>
 
 <script setup>
+import api from "../services/api";
 import { onMounted, ref } from "vue";
 import SeverityBadge from "../components/SeverityBadge.vue";
 import StatusBadge from "../components/StatusBadge.vue";
-import api from "../services/api";
 
 const alerts = ref([]);
 const search = ref("");
@@ -104,7 +104,7 @@ function formatTime(iso) {
 }
 
 async function fetchAlerts() {
-  const params = {};
+  let params = {};
   if (search.value) params.search = search.value;
   if (filterSeverity.value) params.severity = filterSeverity.value;
   if (filterStatus.value) params.status = filterStatus.value;
